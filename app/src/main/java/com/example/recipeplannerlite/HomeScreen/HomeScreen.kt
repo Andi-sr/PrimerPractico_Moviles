@@ -36,7 +36,6 @@ fun HomeScreen(viewModel: HomeScreenViewModel) {
 }
 
 @Composable
-//Arreglarlo se ve feo
 
 //Menu
 fun Menu(viewModel: HomeScreenViewModel) {
@@ -55,7 +54,8 @@ fun Menu(viewModel: HomeScreenViewModel) {
         }
     }
 }
-//Añadir un scroll
+
+
 // 1. LISTA DE RECETAS
 @Composable
 fun PantallaListaRecetas(
@@ -70,7 +70,8 @@ fun PantallaListaRecetas(
                 it.ingredientes.any { ing -> ing.contains(busqueda, ignoreCase = true) }
     }
 
-    Column(modifier = modifier.padding(16.dp)) {
+    Column(modifier = modifier
+        .padding(16.dp)) {
 
         Text(
             "Recetario",
@@ -130,7 +131,7 @@ fun PantallaListaRecetas(
         }
     }
 }
-// El scroll no esta funcionando
+
 // 2. CREAR RECETA
 @Composable
 fun PantallaCrearReceta(
@@ -198,7 +199,7 @@ fun PantallaCrearReceta(
     }
 }
 
-//El modelo no se entiende mucho hay que cambiarlo
+
 // 3. PLAN SEMANAL
 @Composable
 fun PantallaPlanSemanal(
@@ -293,12 +294,7 @@ fun PantallaListaCompras(
             "Lista de Compras",
             style = MaterialTheme.typography.headlineMedium
         )
-
-        Text(
-            "Generada automáticamente",
-            style = MaterialTheme.typography.bodySmall
-        )
-
+        
         Spacer(modifier = Modifier.height(12.dp))
 
         LazyColumn {
@@ -320,7 +316,11 @@ fun PantallaListaCompras(
                         onCheckedChange = { checked = it }
                     )
 
-                    Column {
+                    Row(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween)
+                    {
 
                         Text(
                             nombre.replaceFirstChar { it.uppercase() },
@@ -328,13 +328,11 @@ fun PantallaListaCompras(
                         )
 
                         Text(
-                            "Total: $cantidad",
-                            style = MaterialTheme.typography.bodySmall
+                            "Cantidad: $cantidad",
                         )
                     }
                 }
 
-                HorizontalDivider(thickness = 0.5.dp)
             }
         }
     }
